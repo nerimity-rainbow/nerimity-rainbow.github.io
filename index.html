@@ -3,7 +3,7 @@
 <html>
 <head>
 <title>Nerimity Rainbow Text Generator</title>
-<style>#gen{padding:5px; background-color:#eeeeee; border:2px solid #000000; width:100%;}</style>
+<style>#gen{padding:5px; background-color:#eeeeee; border:2px solid #000000; width:100%;} #preview{padding:5px; background-color:#eeeeee; border:2px solid #000000; width:100%;}</style>
 </head>
 <body>
 
@@ -21,16 +21,28 @@ function genText(input){
     }
     return store;
 }
+
+function genPreview(input){
+	let store = "";
+    for (let i = 0; i < input.length; i++) {
+    	if (input[i] !== " "){
+    		store += "<font color='" + colors[i%colors.length] + "'>" + input [i] + "</font>"
+        } else {
+        	store += " ";
+        }
+    }
+    return store;
+}
 </script>
 
 
 
 
-<button onclick="let txt = genText(prompt('Enter Text')); document.getElementById('gen').innerHTML = txt; document.getElementById('gen').style.display = 'block';"><h1>Click for prompt</h1></button>
+<button onclick="var input = prompt('Enter Text'); let genTxt = genText(input); let prevTxt = genPreview(input); document.getElementById('gen').innerHTML = genTxt; document.getElementById('gen').style.display = 'block'; document.getElementById('preview').innerHTML = '<b>Preview:</b><br>' + prevTxt; document.getElementById('preview').style.display = 'block';"><h1>Click for prompt</h1></button>
 
 
 <p id="gen" style="display:none;"></p>
-
+<p id="preview" style="display:none;"></p>
 
 </body>
 </html>
